@@ -18,24 +18,15 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Achievements'),
+        backgroundColor: Colors.purple,
       ),
       body: ListView.builder(
-          itemCount: 100,
+          itemCount: 10,
           itemBuilder: (context, index) {
             return Slidable(
               key: ValueKey(index),
               actionPane: SlidableDrawerActionPane(),
               secondaryActions: <Widget>[
-                IconSlideAction(
-                  caption: 'Update',
-                  color: Colors.grey.shade300,
-                  icon: Icons.edit,
-                  closeOnTap: false,
-                  onTap: () {
-                    Toast.show('Update on $index', context,
-                        duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-                  },
-                ),
                 IconSlideAction(
                   caption: 'Delete',
                   color: Colors.red.shade300,
@@ -51,6 +42,15 @@ class MyHomePage extends StatelessWidget {
               child: ListTile(title: Text('Achievement $index')),
             );
           }),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.purple,
+        onPressed: () {
+          Toast.show('Add achievement', context,
+              duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }
