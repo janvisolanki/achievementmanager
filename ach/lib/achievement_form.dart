@@ -53,7 +53,7 @@ class _AchievementFormState extends State<AchievementForm> {
                             _image,
                             width: 100,
                             height: 100,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
                       )
                       : Container(
