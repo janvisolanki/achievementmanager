@@ -1,5 +1,8 @@
+
+
 import 'package:ach/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class DatabaseService {
   String id2;
@@ -11,9 +14,13 @@ class DatabaseService {
   final CollectionReference userCollection =
       Firestore.instance.collection('users');
 
+  
+
+  
   Future updateUserData(
       String name, String email, String uid) async {
     print(email + ' ');
+  
     return await userCollection.document(uid).setData({
       'image':null,
       'name': name,
@@ -28,7 +35,24 @@ class DatabaseService {
       'no': null,
       'check': 'false',
     });
+
+    /*Future updateach(String image, String category, String description) async {
+    String startingdate = DateTime.now().toString().substring(0,10);
+    CollectionReference taskCollection = Firestore.instance.collection(uid);
+    return await taskCollection.add({
+      'image':image,
+      'category':category,
+      'description':description,
+      //'date': startingdate,
+      //'totaldays': 0
+    });
+  }*/
+
   }
+
+  
+
+
 
   Future updateUser(
       String image,
@@ -41,7 +65,9 @@ class DatabaseService {
      // String expertise,
       String no,
       String email,
-      String id) async {
+      String id,
+     ) async {
+      
     return await userCollection.document(uid).setData({
       'image' : image,
       'name': name,
@@ -56,7 +82,11 @@ class DatabaseService {
       'email': email,
       'id': id
     });
+
+    
+  
   }
+
 
   //User data from snapshot
   UserInfo _userDataFromSnapshot(DocumentSnapshot snapshot) {

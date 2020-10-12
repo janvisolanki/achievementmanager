@@ -2,6 +2,7 @@ import 'package:ach/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ach/SignUp.dart';
+import 'package:ach/database.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -9,7 +10,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
 
 final formKey =new GlobalKey<FormState>();
   String _email ='', _password='';

@@ -15,6 +15,7 @@ class UserInfo {
   String email;
   String id;
   String check;
+  
   UserInfo(
       {
         this.image,
@@ -28,5 +29,6 @@ class UserInfo {
       this.no,
       this.email,
       this.id,
-      this.check});
+      this.check,
+      n});
 }

@@ -1,7 +1,10 @@
 import 'package:ach/database.dart';
 import 'package:ach/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:ach/ach_notifier.dart';
+import 'package:ach/ach.dart';
+import 'package:flutter/material.dart';
 
 class Authservice {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -23,6 +26,8 @@ class Authservice {
       print('name ' + name);
      
       FirebaseUser user = result.user;
+
+      
       await DatabaseService().updateUserData(name, email,  user.uid);
       return _userFromFirebaseAuth(user);
     } catch (e) {
@@ -50,4 +55,22 @@ class Authservice {
       print(e.toString());
     }
   }
+}
+
+getach(AchNotifier achNotifier) async {
+
+  QuerySnapshot snapshot = await Firestore.instance
+  .collection("achievement")
+  .orderBy("createdAt", descending: true)
+  .getDocuments();
+
+   List<Ach> _achlist = [];
+
+   snapshot.documents.forEach((document) {
+     Ach ach = Ach.fromMap(document.data);
+     _achlist.add(ach);
+    });
+
+    achNotifier.achlist=_achlist;
+  
 }
